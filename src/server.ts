@@ -12,14 +12,19 @@ async function main() {
 }
 
 main()
-  .then(() => console.log("database connected"))
+  .then(() => {
+    console.log("database connected");
+    startServer();
+  })
   .catch(console.log);
 
 const app: Application = express();
 
-app.get("/", (_, res: Response) => {
-  res.send("Hello world");
-});
+const startServer = () => {
+  app.get("/", (_, res: Response) => {
+    res.send("Hello world");
+  });
 
-const port = process.env.PORT || 8000;
-app.listen(port, () => console.log(`Server is running from port ${port}`));
+  const port = process.env.PORT || 8000;
+  app.listen(port, () => console.log(`Server is running from port ${port}`));
+};

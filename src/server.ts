@@ -1,5 +1,5 @@
-import { config } from "dotenv";
 import express, { Application, Response } from "express";
+import { config } from "dotenv";
 import mongoose from "mongoose";
 import path from "path";
 
@@ -25,9 +25,10 @@ main()
 
 const app: Application = express();
 app.use(express.json());
-app.use("/storage", express.static(path.join(__dirname, "../src/public")));
 
 const startServer = () => {
+  app.use("/storage", express.static(path.join(__dirname, "../src/public")));
+
   app.get("/", (_, res: Response) => {
     res.send("Hello world");
   });

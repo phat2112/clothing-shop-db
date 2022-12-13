@@ -105,4 +105,20 @@ router.post("/add-product", (req: Request, res: Response) => {
   });
 });
 
+router.get("/search-product", async (req: Request, res: Response) => {
+  const { query } = req.query;
+
+  const products = await Product.find();
+
+  const result = products.filter((product) => {
+    if (typeof query == "string") {
+      const productLabel = product.name.substring(0, query.length);
+
+      return productLabel.toLowerCase() == query.toLowerCase();
+    }
+  });
+
+  return res.status(200).send({ data: result });
+});
+
 export default router;

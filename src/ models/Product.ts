@@ -1,5 +1,22 @@
 import { model, Schema, ValidatorProps } from "mongoose";
 
+const amountSchema = new Schema({
+  size: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  },
+  alias: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+});
+
 const ProductSchema = new Schema({
   name: {
     type: String,
@@ -19,10 +36,11 @@ const ProductSchema = new Schema({
     type: Number,
     required: true,
   },
-  quantity: {
+  salePrice: {
     type: Number,
-    required: true,
+    required: false,
   },
+  amount: [amountSchema],
   createdAt: {
     type: String,
     required: true,

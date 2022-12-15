@@ -5,10 +5,13 @@ export const EXPIRED_IN = 3600;
 export const FILTER_MODE = {
   "1": "priceUp",
   "2": "priceDown",
-  "3": "A-Z",
-  "4": "Z-A",
-  "5": "Oldest",
-  "6": "Newest",
-  "7": "Best Seller",
-  "8": "Inventory",
+  "3": "a-z",
+  "4": "z-a",
+  "5": "oldest",
+  "6": "newest",
+};
+
+export const RELATED_PRODUCTS = {
+  "0": "related",
+  "1": "bestSeller",
 };

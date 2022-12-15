@@ -34,6 +34,7 @@ const startServer = () => {
   });
 
   app.use("/auth", authRoutes);
+
   app.use("/product", productRoutes);
 
   const port = process.env.PORT || 8000;

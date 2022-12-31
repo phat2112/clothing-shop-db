@@ -82,7 +82,9 @@ export const getProductList = async (req: Request, res: Response) => {
       newProducts = filterCond(newProducts, filter);
     }
 
-    res.status(200).send({ data: newProducts });
+    res
+      .status(200)
+      .send({ data: { products: newProducts, total: products.length } });
   } catch (error) {
     Logging.error(error);
   }

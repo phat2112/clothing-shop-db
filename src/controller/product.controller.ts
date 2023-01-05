@@ -68,7 +68,7 @@ export const getProductList = async (req: Request, res: Response) => {
 
     let count = 0;
     const newLimit = Number(limit);
-    const newOffset = Number(offset) + 1;
+    const newOffset = Number(offset);
     let newProducts = [];
     const currentIdx = newLimit * newOffset - newLimit;
 

@@ -2,6 +2,7 @@ import express, { Application, Response } from "express";
 import { config } from "dotenv";
 import mongoose from "mongoose";
 import path from "path";
+import cors from "cors";
 
 import authRoutes from "./routes/authentication";
 import productRoutes from "./routes/product";
@@ -25,6 +26,7 @@ main()
 
 const app: Application = express();
 app.use(express.json());
+app.use(cors());
 
 const startServer = () => {
   app.use("/storage", express.static(path.join(__dirname, "../src/public")));

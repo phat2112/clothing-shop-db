@@ -68,7 +68,7 @@ export const getProductList = async (req: Request, res: Response) => {
 
     let count = 0;
     const newLimit = Number(limit);
-    const newOffset = Number(offset) + 1;
+    const newOffset = Number(offset);
     let newProducts = [];
     const currentIdx = newLimit * newOffset - newLimit;
 
@@ -135,6 +135,25 @@ export const getSpecifiedProducts = async (req: Request, res: Response) => {
     }
 
     res.status(200).send({ data: newProducts });
+  } catch (error) {
+    Logging.error(error);
+  }
+};
+
+export const getSearchedProducts = async (req: Request, res: Response) => {
+  const { query } = req.query;
+
+  const products = await Product.find();
+  try {
+    const result = products.filter((product) => {
+      if (typeof query == "string") {
+        const productLabel = product.name.substring(0, query.length);
+
+        return productLabel.toLowerCase() == query.toLowerCase();
+      }
+    });
+
+    return res.status(200).send({ data: result });
   } catch (error) {
     Logging.error(error);
   }

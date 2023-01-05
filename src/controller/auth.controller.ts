@@ -24,7 +24,7 @@ export const loginController = async (req: Request, res: Response) => {
     bcrypt.compare(password, user.password, (err, response) => {
       if (err) {
         Logging.error(err.message);
-        return res.status(500).send({ message: "Internal serer error" });
+        return res.status(500).send({ message: "Internal server error" });
       } else if (response) {
         return res.status(200).send({
           token: jwt.sign({ email }, SECRET_KEY, {
@@ -33,9 +33,9 @@ export const loginController = async (req: Request, res: Response) => {
         });
       }
     });
+  } else {
+    return res.status(400).send({ message: "User is not found" });
   }
-
-  return res.status(400).send({ message: "User is not found" });
 };
 
 export const registerController = async (req: Request, res: Response) => {
